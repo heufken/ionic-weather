@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title size="large">Weather Forecast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="weatherData5Days && weatherData5Days.length > 0" class="ion-padding">
+    <ion-list-header>
+      <ion-label>Data Cuaca dalam 5 Hari (Perkiraan Tiap 3 Jam)</ion-label>
+    </ion-list-header>
+    <ion-card *ngFor="let data of weatherData3Hours">
+      <ion-card-header (click)="detailpage(data)" class="detail-button">
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <img [src]="'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png'" alt="Weather Icon">
+          </ion-thumbnail>
+          <ion-label>{{ formatDate(data.dt_txt) }}</ion-label>
+          <ion-button fill="clear" color="primary" slot="end" class="detail-button" (click)="detailpage(data)">Detail</ion-button>
+        </ion-item>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-icon name="thermometer"></ion-icon>
+        <ion-label>{{ data.main.temp }} °C</ion-label><br>
+        <ion-icon name="cloud"></ion-icon>
+        <ion-label>{{ data.weather[0].description }}</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-spinner *ngIf="!weatherData5Days"></ion-spinner>
+</ion-content>

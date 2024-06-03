@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title size="large">Weather Now</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-text-center weather-content">
+  <div id="container" *ngIf="weather">
+    <img class="weather-icon" src="http://openweathermap.org/img/wn/{{ weather.weather[0].icon }}@2x.png" alt="Weather Icon" />
+    <h1 class="ion-40p temperature">{{ temp }} °C</h1>
+    <h2 class="ion-20p">{{ city }}</h2>
+    <p class="ion-10p weather-description">{{ weather.weather[0].description }}</p>
+  </div>
+</ion-content>
